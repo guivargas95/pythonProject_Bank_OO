@@ -1,5 +1,5 @@
-class Bank:
-    def __init__(self,account_number, owner, money, limit = 1000):
+class Account:
+    def __init__(self, account_number, owner, money, limit=1000):
         self.__account_number = account_number
         self.__owner = owner
         self.__money = money
@@ -10,30 +10,32 @@ class Bank:
 
     def draft(self, value):
         if self.__money < value:
-            return("Insufficiet funds")
+            return"Insufficient funds"
         self.__money -= value
-        return(f"Draft complete. Your balance: {self.__money}")
-
+        return f"Draft complete. Your balance: {self.__money}"
 
     def deposit(self, value):
         self.__money += value
-        return(f"Deposit complete. Your balance: U$${self.__money}")
+        return f"Deposit complete. Your balance: U$${self.__money}"
 
-
-    def transfer(self,value,account_target):
+    def transfer(self,value,accountTarget):
         if self.__money < value:
             return ("Insufficiet funds")
         self.draft(value)
-        account_target.deposit(value)
+        accountTarget.deposit(value)
 
-    def get_money(self):
+    @property
+    def money(self):
         return self.__money
 
-    def get_owner(self):
+    @property
+    def owner(self):
         return self.__owner
 
-    def get_limit(self):
+    @property
+    def limit(self):
         return self.__limit
 
-    def set_limit(self,value):
+    @limit.setter
+    def limit(self, value):
         self.__limit = value
