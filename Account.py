@@ -8,6 +8,26 @@ class Account:
         self.__money = money
         self.__limit = limit
 
+    @property
+    def money(self):
+        return self.__money
+
+    @property
+    def owner(self):
+        return self.__owner
+
+    @property
+    def limit(self):
+        return self.__limit
+
+    @limit.setter
+    def limit(self, value):
+        self.__limit = value
+
+    @staticmethod
+    def bank_code_method():
+        return "001"
+
     def extract(self):
         print(f"{self.__owner}'s Account\nBalance: U$${self.__money}")
 
@@ -33,22 +53,4 @@ class Account:
         true_limit = self.__money + self.limit
         return value <= true_limit
 
-    @property
-    def money(self):
-        return self.__money
 
-    @property
-    def owner(self):
-        return self.__owner
-
-    @property
-    def limit(self):
-        return self.__limit
-
-    @limit.setter
-    def limit(self, value):
-        self.__limit = value
-
-    @staticmethod
-    def bank_code_method():
-        return "001"
