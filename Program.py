@@ -1,41 +1,62 @@
 class Program:
-    def __init__(self, name, year, additional_information="undefined"):
-        self.__name = name.title()
-        self.__year = year
-        self.__additional_information = additional_information
+    def __init__(self, name, year):
+
+        self._likes = 0
+        self._name = name.title()
+        self._year = year
 
     @property
     def name(self):
-        return self.__name
+        return self._name
 
     @property
     def year(self):
-        return self.__year
+        return self._year
 
     @property
-    def additional_information(self):
-        return self.__additional_information
+    def likes(self):
+        return self._likes
 
     @name.setter
     def name(self, new_name):
-        self.__name = new_name.title()
+        self._name = new_name.title()
 
     @year.setter
     def year(self, new_year):
-        self.__year = new_year
+        self._year = new_year
 
-    @additional_information.setter
-    def additional_information(self, new_information):
-        self.__additional_information = new_information
+    def add_like(self):
+        self._likes += 1
+
+    def __str__(self):
+        return f"Name: {self.name}\nYear: {self.year}\nLikes: {self.likes}"
 
 
-class Movie(Program):
-    def __init__(self, name, year, additional_information):
+class Movies(Program):
+    def __init__(self, name, year, duration):
         super().__init__(name, year)
-        self.additional_information = additional_information
+        self.duration = duration
+
+    def __str__(self):
+        return f"Name: {self.name}\nYear: {self.year}\nDuration: {self.duration}\nLikes: {self.likes}"
 
 
-program1 = Program("matrix", 1995, "150")
-print(program1.name)
-program1.name = "matrix reloaded"
-print(program1.name)
+class Series(Program):
+    def __init__(self, name, year, seasons):
+        super().__init__(name, year)
+        self.seasons = seasons
+
+    def __str__(self):
+        return f"Name: {self.name}\nYear: {self.year}\nSeasons: {self.seasons}\nLikes: {self.likes}"
+
+
+movie1 = Movies("matrix", 1995, "120")
+series1 = Series("supernatural", 2002, "16")
+
+movie1.add_like()
+movie1.add_like()
+series1.add_like()
+program_list = [movie1, series1]
+
+for program in program_list:
+    print(program)
