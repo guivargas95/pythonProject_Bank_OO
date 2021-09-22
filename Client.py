@@ -1,10 +1,13 @@
 class Client:
 
     def __init__(self, client_id, first_name, last_name, birth):
-        self.__client_id = self.id_validate(client_id)
         self.__first_name = first_name
         self.__last_name = last_name
         self.__birth = birth
+        if self.id_validate(client_id):
+            self.__client_id = client_id
+        else:
+            raise ValueError("Invalid ID")
 
     @property
     def id(self):
@@ -43,6 +46,9 @@ class Client:
 
         if first_validation == cpf[9] and second_validation == cpf[10]:
 
-            return client_id
+            return True
         else:
             return False
+
+
+client1 = Client("06878841950", "Guilherme", "Vargas", "14071995")

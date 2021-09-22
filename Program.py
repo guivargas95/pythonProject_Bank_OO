@@ -50,8 +50,20 @@ class Series(Program):
         return f"Name: {self.name}\nYear: {self.year}\nSeasons: {self.seasons}\nLikes: {self.likes}"
 
 
-movie1 = Movies("matrix", 1995, "120")
-series1 = Series("supernatural", 2002, "16")
+class Playlist:
+    def __init__(self, nome, programs):
+        self.nome = nome
+        self._programs = programs
+
+    def __getitem__(self, item):
+        return self._programs[item]
+
+    def __len__(self):
+        return len(self._programs)
+
+
+movie1 = Movies("matrix", 1995, 120)
+series1 = Series("supernatural", 2002, 16)
 
 movie1.add_like()
 movie1.add_like()
