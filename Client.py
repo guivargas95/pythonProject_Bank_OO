@@ -1,8 +1,8 @@
 class Client:
 
     def __init__(self, client_id, first_name, last_name, birth):
-        self.__first_name = first_name
-        self.__last_name = last_name
+        self.__first_name = first_name.title()
+        self.__last_name = last_name.title()
         self.__birth = birth
         if self.id_validate(client_id):
             self.__client_id = client_id
@@ -51,4 +51,6 @@ class Client:
             return False
 
 
-client1 = Client("06878841950", "Guilherme", "Vargas", "14071995")
+client1 = Client("06878841950", "guilherme", "Vargas", "14071995")
+print(client1.id)
+print(client1.name)
